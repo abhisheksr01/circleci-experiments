@@ -12,6 +12,6 @@ workflows:
       - path-filtering/filter:
           mapping: |
             calculator/.* run-helloworld true
-            helloworld/.* run-hellocalculator true
+            helloworld/.* run-calculator true
           base-revision: main
           config-path: .circleci/workflows.yml
