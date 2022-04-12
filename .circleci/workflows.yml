@@ -40,8 +40,8 @@ jobs:
       - checkout:
           path: ~/circleci-experiments
       - run:
-          name: Clean Install Dependencies
-          command: npm start
+          name: Executing Calculator app
+          command: npm i && npm start
   
 workflows:
   calculator:
