@@ -40,15 +40,9 @@ workflows:
     jobs:
       - backend-calculator:
           name: calculator install
-          filters:
-            branches:
-              only: main
   
   helloworld:
     when: << pipeline.parameters.run-helloworld >>
     jobs:
       - backend-helloworld:
           name: helloworld install
-          filters:
-            branches:
-              only: main
