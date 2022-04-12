@@ -1,0 +1,24 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "This repository is used for experimenting on a mono repo using CircleCI.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node ./src/Calculator.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhisheksr01/circleci-experiments.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abhisheksr01/circleci-experiments/issues"
+  },
+  "homepage": "https://github.com/abhisheksr01/circleci-experiments#readme",
+  "devDependencies": {
+    "ts-node": "^10.7.0"
+  }
+}
