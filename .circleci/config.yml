@@ -1,0 +1,15 @@
+version: 2.1
+
+orbs:
+  # slack: circleci/slack@3.4.2
+  path-filtering: circleci/path-filtering@0.0.2
+
+workflows:
+  node-app:
+    jobs:
+      - path-filtering/filter:
+          mapping: |
+            calculator/.*
+            helloworld/.*
+          base-revision: main
+          config-path: .circleci/workflows.yml

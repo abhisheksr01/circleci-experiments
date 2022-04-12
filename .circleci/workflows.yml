@@ -1,0 +1,45 @@
+version: 2.1
+
+executors:
+  node:
+    docker:
+      - image: cimg/node:17.9.0
+
+# the default pipeline parameters, which will be updated according to the results of the path-filtering orb
+parameters:
+  run-helloworld:
+    type: boolean
+    default: false
+  run-calculator:
+    type: boolean
+    default: false
+
+jobs:
+  install-node-modules-calculator:
+    executor: node
+    working_directory: ~/circleci-experiments/calculator
+    steps:
+      - checkout
+      - run:
+          name: Install node dependencies for calculator
+          command: npm i
+  install-node-modules-helloworld:
+    executor: node
+    working_directory: ~/circleci-experiments/helloworld
+    steps:
+      - checkout
+      - run:
+          name: Install node dependencies for calculator
+          command:  npm i
+
+workflows:
+  backend-helloworld:
+    when: << pipeline.parameters.run-helloworld >>
+    jobs:
+      - install-node-modules-helloworld:
+        name: "Installing node modules for hello world"
+  backend-calculator:
+    when: << pipeline.parameters.run-calculator >>
+    jobs:
+      - install-node-modules-calculator:
+        name: "Installing node modules for calculator"
