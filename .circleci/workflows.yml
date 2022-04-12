@@ -33,6 +33,15 @@ jobs:
       - run:
           name: Clean Install Dependencies
           command: npm i
+  backend-calculator-print:
+    executor: node
+    working_directory: ~/circleci-experiments/calculator
+    steps:
+      - checkout:
+          path: ~/circleci-experiments
+      - run:
+          name: Clean Install Dependencies
+          command: npm start
   
 workflows:
   calculator:
@@ -40,6 +49,11 @@ workflows:
     jobs:
       - backend-calculator:
           name: calculator install
+      - backend-calculator-print:
+          name: execute calculator
+          requires:
+            - calculator install
+
   
   helloworld:
     when: << pipeline.parameters.run-helloworld >>
