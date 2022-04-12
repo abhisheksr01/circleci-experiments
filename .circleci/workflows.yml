@@ -12,45 +12,43 @@ parameters:
 executors:
   node:
     docker:
-      - image: cimg/node:17.9.0
+      - image: cimg/node:16.5.0
 
 jobs:
-  install-node-modules-calculator:
+  backend-calculator:
     executor: node
     working_directory: ~/circleci-experiments/calculator
     steps:
       - checkout:
           path: ~/circleci-experiments
       - run:
-          name: Install node dependencies for calculator
-          command: |
-            npm i
-  install-node-modules-helloworld:
+          name: Clean Install Dependencies
+          command: npm i
+  backend-helloworld:
     executor: node
     working_directory: ~/circleci-experiments/helloworld
     steps:
       - checkout:
           path: ~/circleci-experiments
       - run:
-          name: Install node dependencies for calculator
-          command: |
-            npm i
-
+          name: Clean Install Dependencies
+          command: npm i
+  
 workflows:
-  helloworld:
-    when: << pipeline.parameters.run-helloworld >>
-    jobs:
-      - install-node-modules-helloworld:
-        name: "Installing node modules for hello world"
-        filters:
-            branches:
-              only: main
-
   calculator:
     when: << pipeline.parameters.run-calculator >>
     jobs:
-      - install-node-modules-calculator:
-        name: "Installing node modules for calculator"
-        filters:
+      - backend-calculator:
+          name: calculator install
+          filters:
+            branches:
+              only: main
+  
+  helloworld:
+    when: << pipeline.parameters.run-helloworld >>
+    jobs:
+      - backend-helloworld:
+          name: helloworld install
+          filters:
             branches:
               only: main
