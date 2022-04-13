@@ -50,7 +50,7 @@ jobs:
            template: basic_fail_1
            mentions: "@abhishek"
       - slack/notify:
-           event: pass
+           event: always
            template: success_tagged_deploy_1
   
 workflows:
