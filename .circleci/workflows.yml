@@ -46,8 +46,12 @@ jobs:
           name: Executing Calculator app
           command: npm i && npm start
       - slack/notify:
+           event: fail
+           template: basic_fail_1
+           mentions: "@abhishek"
+      - slack/notify:
            event: pass
-           template: basic_success_1
+           template: success_tagged_deploy_1
   
 workflows:
   calculator:
