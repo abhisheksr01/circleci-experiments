@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+   slack: circleci/slack@4.0
+
 # the default pipeline parameters, which will be updated according to the results of the path-filtering orb
 parameters:
   run-helloworld:
@@ -60,3 +63,8 @@ workflows:
     jobs:
       - backend-helloworld:
           name: helloworld install
+      - slack/notify:
+           event: pass
+           template: basic_success_1
+           context:
+            - circleci-slack
