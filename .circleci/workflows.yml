@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-   slack: circleci/slack@4.0
+   slack: circleci/slack@4.9.3
 
 # the default pipeline parameters, which will be updated according to the results of the path-filtering orb
 parameters:
@@ -50,8 +50,9 @@ jobs:
            template: basic_fail_1
            mentions: "@abhishek"
       - slack/notify:
-           event: always
+           event: pass
            template: success_tagged_deploy_1
+           mentions: "@abhishek"
   
 workflows:
   calculator:
