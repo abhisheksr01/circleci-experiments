@@ -45,6 +45,9 @@ jobs:
       - run:
           name: Executing Calculator app
           command: npm i && npm start
+      - slack/notify:
+           event: pass
+           template: basic_success_1
   
 workflows:
   calculator:
@@ -54,6 +57,8 @@ workflows:
           name: calculator install
       - backend-calculator-print:
           name: execute calculator
+          context:
+            - circleci-slack
           requires:
             - calculator install
 
@@ -63,8 +68,3 @@ workflows:
     jobs:
       - backend-helloworld:
           name: helloworld install
-      - slack/notify:
-           event: pass
-           template: basic_success_1
-           context:
-            - circleci-slack
